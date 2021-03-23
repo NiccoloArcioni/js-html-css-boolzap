@@ -7,6 +7,7 @@ var app = new Vue ({
         avatarImgType: '.jpg',
         newMessage: '',
         findUsers: '',
+        messageIndex: '',
         contacts: [
             {
                 name: 'Michele',
@@ -116,6 +117,27 @@ var app = new Vue ({
                 status: 'received'
             };
             this.contacts[this.activeUser].messages.push(messageReply);
+        },
+        toggleInfo: function(index) {
+            this.messageIndex = index; /* var di appoggio per poter usare l'index in method closeInfo */
+            let infos = document.getElementsByClassName('message_info');
+            let infoMessage = infos[index];
+            if (infoMessage.style.display === 'none')
+                infoMessage.style.display = 'block';
+            else {
+                infoMessage.style.display = 'none';
+            }
+        },
+        deleteMessage: function(index) {
+            let infos = document.getElementsByClassName('message_info');
+            let infoMessage = infos[index];
+            this.contacts[this.activeUser].messages.splice(index, 1);
+            infoMessage.style.display = 'none';
+        },
+        closeInfo: function() {
+            let infos = document.getElementsByClassName('message_info');
+            let infoMessage = infos[this.messageIndex];
+            infoMessage.style.display = 'none';
         }
     }
 })

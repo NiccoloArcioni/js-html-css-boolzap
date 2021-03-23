@@ -206,13 +206,48 @@ h4 {
 }
 
 #chat .chat_container .message .text_message_container {
+    position: relative;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
+
 #chat .chat_container .message .text_message_container .message_date {
     align-self: flex-end;
     font-size: 0.6em;
     color: #808080;
+}
+
+#chat .chat_container .message .text_message_container i {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #808080;
+    visibility: hidden;
+}
+
+#chat .chat_container .message .text_message_container:hover > i {
+    visibility: visible;
+}
+
+#chat .chat_container .message .text_message_container .message_info {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    background-color: #fff;
+    box-shadow: 1px 1px 4px #808080;
+    z-index: 100;
+    cursor: pointer;
+    display: none;
+}
+#chat .chat_container .message .text_message_container .message_info ul {
+    list-style: none;
+}
+#chat .chat_container .message .text_message_container .message_info ul li {
+    padding: 10px;
+}
+#chat .chat_container .message .text_message_container .message_info ul li:hover {
+    background-color: #E9EBEB;
 }
 
 #typing_new_message {

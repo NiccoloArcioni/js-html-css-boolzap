@@ -65,8 +65,8 @@
                 </nav>
             </section>
         </div>
-
         <!-- right panel -->
+
         <div class="ms_main_right">
             <!-- active chat -->
             <section id="active_chat_user">
@@ -88,10 +88,17 @@
             <!-- active chat messages -->
             <section id="chat">
                 <div class="chat_container clearfix">
-                    <div class="message" v-for='message in contacts[activeUser].messages' :class="message.status == 'sent' ? 'position_r' : 'position_l'">
+                    <div class="message" v-for='(message, index) in contacts[activeUser].messages' :class="message.status == 'sent' ? 'position_r' : 'position_l'">
                         <div class="text_message_container">
                             <span>{{message.text}}</span>
                             <span class="message_date">{{message.date}}</span>
+                            <i class="fas fa-chevron-down" @click="toggleInfo(index)"></i>
+                            <div class="message_info" @mouseleave='closeInfo()'>
+                                <ul>
+                                    <li>Message info</li>
+                                    <li @click="deleteMessage(index)">Delete Message</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
