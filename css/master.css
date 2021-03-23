@@ -146,7 +146,12 @@ h4 {
     display: flex;
     border-bottom: 1px solid #E9EBEB;
     padding: 5px 15px;
+    cursor: pointer;
 }
+#user_messages ul li:hover {
+    background-color: #f3f3f3;
+}
+
 #user_messages ul li span {
     align-self: flex-start;
     margin-left: 10px;
@@ -154,6 +159,9 @@ h4 {
 
 #user_messages ul li:first-child {
     border-top: 1px solid #E9EBEB;
+}
+
+#user_messages ul li.activeContact {
     background-color: #E9EBEB;
 }
 

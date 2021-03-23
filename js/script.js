@@ -88,7 +88,12 @@ var app = new Vue ({
                         status: 'received'
                     }
                 ],
-            },
+            }
         ]
+    },
+    methods: {
+        showSelectedContactChat: function(index) {
+            this.activeUser = index;
+        }
     }
 })

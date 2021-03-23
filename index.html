@@ -57,7 +57,7 @@
             <section id="user_messages">
                 <nav>
                     <ul>
-                        <li v-for="user in contacts">
+                        <li v-for="(user, index) in contacts" @click="showSelectedContactChat(index)" :class="activeUser == index ? 'activeContact' : null">
                             <img :src="avatarPath + user.avatar + avatarImgType" class="users_img">
                             <span>{{user.name}}</span>
                         </li>
