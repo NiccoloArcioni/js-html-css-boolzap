@@ -1,6 +1,8 @@
 var app = new Vue ({
     el: '#root',
     data: {
+        activeUser: 0,
+        activeUserLastAccess: '',
         avatarPath: 'img/avatar',
         avatarImgType: '.jpg',
         contacts: [
