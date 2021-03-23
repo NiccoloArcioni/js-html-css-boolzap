@@ -86,8 +86,15 @@
             </section>
 
             <!-- active chat messages -->
-            <section>
-
+            <section id="chat">
+                <div class="chat_container clearfix">
+                    <div class="message" v-for='message in contacts[activeUser].messages' :class="message.status == 'sent' ? 'position_r' : 'position_l'">
+                        <div class="text_message_container">
+                            <span>{{message.text}}</span>
+                            <span class="message_date">{{message.date}}</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- typing section -->

@@ -158,3 +158,50 @@ h4 {
 }
 
 /* RIGHT PANEL */
+#chat {
+    width: 100%;
+    height: 80%;
+    background-image: url('../img/mine.jpg');
+    background-attachment: local;
+    background-size: 60%;
+    background-repeat: repeat;
+    background-position: center;
+    padding-top: 20px;
+}
+
+#chat .chat_container {
+    width: 80%;
+    height: 640px;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+#chat .chat_container .message {
+    width: 250px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    border-radius: 10px
+}
+
+#chat .chat_container .message.position_r {
+    float: right; 
+    margin-left: 60%;
+    background-color: #D5F9BA;
+}
+
+#chat .chat_container .message.position_l {
+    float: left;
+    margin-right: 60%;
+    background-color: #fff;
+}
+
+#chat .chat_container .message .text_message_container {
+    display: flex;
+    flex-direction: column;
+}
+#chat .chat_container .message .text_message_container .message_date {
+    align-self: flex-end;
+    font-size: 0.6em;
+    color: #808080;
+}
