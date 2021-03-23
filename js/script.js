@@ -5,6 +5,7 @@ var app = new Vue ({
         activeUserLastAccess: '',
         avatarPath: 'img/avatar',
         avatarImgType: '.jpg',
+        newMessage: '',
         contacts: [
             {
                 name: 'Michele',
@@ -94,6 +95,26 @@ var app = new Vue ({
     methods: {
         showSelectedContactChat: function(index) {
             this.activeUser = index;
+        },
+        sendMessage: function() {
+            let messageSent = {
+                date: `${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`,
+                text: this.newMessage,
+                status: 'sent'
+            };
+            if (this.newMessage.length >= 1) {
+                this.contacts[this.activeUser].messages.push(messageSent);
+                this.newMessage = '';
+                setTimeout(app.replyMessage(), 1000);
+            }
+        },
+        replyMessage: function() {
+            let messageReply = {
+                date: `${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`,
+                text: 'Ok',
+                status: 'received'
+            };
+            this.contacts[this.activeUser].messages.push(messageReply);
         }
     }
 })
