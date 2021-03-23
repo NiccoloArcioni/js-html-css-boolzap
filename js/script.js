@@ -2,10 +2,11 @@ var app = new Vue ({
     el: '#root',
     data: {
         activeUser: 0,
-        activeUserLastAccess: '',
+        activeUserLastAccess: `${dayjs().hour()}:${dayjs().minute()}`,
         avatarPath: 'img/avatar',
         avatarImgType: '.jpg',
         newMessage: '',
+        findUsers: '',
         contacts: [
             {
                 name: 'Michele',
@@ -118,3 +119,4 @@ var app = new Vue ({
         }
     }
 })
+
