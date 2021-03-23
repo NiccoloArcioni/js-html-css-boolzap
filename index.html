@@ -15,7 +15,7 @@
     <title>Boolzapp</title>
 </head>
 <body>
-    <div class="ms_main_container">
+    <div id="root" class="ms_main_container">
         <!-- left panel -->
         <div class="ms_main_left">
             <!-- user section -->
@@ -55,7 +55,10 @@
             <section id="user_messages">
                 <nav>
                     <ul>
-
+                        <li v-for="user in contacts">
+                            <img :src="avatarPath + user.avatar + avatarImgType" class="users_img">
+                            <span>{{user.name}}</span>
+                        </li>
                     </ul>
                 </nav>
             </section>
