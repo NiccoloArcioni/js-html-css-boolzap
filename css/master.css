@@ -160,8 +160,8 @@ h4 {
 /* RIGHT PANEL */
 #chat {
     width: 100%;
-    height: 80%;
     background-image: url('../img/mine.jpg');
+    height: 82%;
     background-attachment: local;
     background-size: 60%;
     background-repeat: repeat;
@@ -170,7 +170,7 @@ h4 {
 }
 
 #chat .chat_container {
-    width: 80%;
+    width: 85%;
     height: 640px;
     margin: 0 auto;
     overflow-y: auto;
@@ -204,4 +204,33 @@ h4 {
     align-self: flex-end;
     font-size: 0.6em;
     color: #808080;
+}
+
+#typing_new_message {
+    display: flex;
+    align-items: center;
+    height: 8%;
+    width: 100%;
+    background-color: #F3EEEA;
+    padding: 5px;
+}
+
+#typing_new_message button {
+    padding: 10px 30px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #F3EEEA;
+}
+#typing_new_message button i {
+    font-size: 1.5em;
+    color: #808080;
+}
+
+#typing_new_message input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 0 10px;
 }
