@@ -100,19 +100,21 @@ var app = new Vue ({
         },
         sendMessage: function() {
             let messageSent = {
-                date: `${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`,
+                date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
                 text: this.newMessage,
                 status: 'sent'
             };
             if (this.newMessage.length >= 1) {
                 this.contacts[this.activeUser].messages.push(messageSent);
                 this.newMessage = '';
-                setTimeout(app.replyMessage(), 1000);
+                setTimeout(() => {
+                    app.replyMessage();
+                }, 1000);
             }
         },
         replyMessage: function() {
             let messageReply = {
-                date: `${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`,
+                date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
                 text: 'Ok',
                 status: 'received'
             };
