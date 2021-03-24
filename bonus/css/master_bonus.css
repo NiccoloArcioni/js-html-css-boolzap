@@ -231,13 +231,18 @@ h4 {
     cursor: pointer;
 }
 
+#ms_message {
+    display: flex;
+    align-items: center;
+}
+
 #chat .chat_container .message .text_message_container .message_date {
     align-self: flex-end;
     font-size: 0.6em;
     color: #808080;
 }
 
-#chat .chat_container .message .text_message_container i {
+#chat .chat_container .message .text_message_container i.fa-chevron-down {
     position: absolute;
     right: 0;
     top: 0;
@@ -308,6 +313,54 @@ h4 {
 
 #typing_new_message input:valid ~ button.send_message {
     display: inline-block;
+}
+
+#mic {
+    position: relative;
+}
+
+#mic i.fa-trash-alt {
+    display: none;
+    color: red;
+}
+
+#mic i.fa-microphone,
+#mic .recording span {
+    display: none;
+}
+
+#mic i.fa-microphone.active_mic {
+    display: block;
+}
+
+#mic.active .recording {
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #009688;
+}
+
+#mic.active i.fa-microphone {
+    font-size: 1.8em;
+    color: #009688;
+}
+#mic.active .recording span,
+#mic.active i.fa-trash-alt {
+    display: block;
+}
+
+i.fa-play {
+    font-size: 1em;
+    color: #B1B1B1;
+}
+div.ms_audio {
+    width: 70%;
+    height: 5px;
+    background-color: #d4d4d4;
+    margin: 0 5px;
+    display: inline-block;
+    border-radius: 2px;
 }
 
 /* MEDIA QUERY */

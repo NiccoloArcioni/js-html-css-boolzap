@@ -105,7 +105,7 @@
                     <div class="message" v-for='(message, index) in contacts[activeUser].messages'
                         :class="message.status == 'sent' ? 'position_r' : 'position_l'">
                         <div class="text_message_container">
-                            <span>{{message.text}}</span>
+                            <div id="ms_message" v-html='message.text'></div>
                             <span class="message_date">{{message.date}}</span>
                             <i class="fas fa-chevron-down" @click="toggleInfo(index)"></i>
                             <div class="message_info" @mouseleave='closeInfo()'>
@@ -125,7 +125,15 @@
                 <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
                     required pattern="\S+.*" />
                 <button class="send_message" @click="sendMessage()"><i class="far fa-paper-plane"></i></button>
-                <button><i class="fas fa-microphone"></i></button>
+                <button id="mic" :class="isRecStarted ? 'active' : null">
+                    <div class="recording">
+                        <i class="fas fa-microphone" @click="startRec()" :class="isRecStarted ? null : 'active_mic'"></i>
+                        <i class="fas fa-microphone" @click="sendAudio()" :class="isRecStarted ? 'active_mic' : null"></i>
+                        <span>{{recMinutes}}:{{recSeconds}}</span>
+                    </div>
+                    <i class="far fa-trash-alt" @click="deleteAudio"></i>
+                </button>
+                
             </section>
         </div>
     </div>

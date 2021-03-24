@@ -9,6 +9,10 @@ var app = new Vue({
         findUsers: '',
         messageIndex: '',
         activeTab: 'left',
+        isRecStarted: false,
+        audioId: '',
+        recSeconds: 0,
+        recMinutes: 0,
         myAccount: {
             name: 'Nome Utente',
             avatar: '_io'
@@ -155,6 +159,47 @@ var app = new Vue({
         },
         activeLeftPanel: function() {
             this.activeTab = 'left';
+        },
+        startRec: function() {
+            this.isRecStarted = true;
+            this.coutTimeRec();
+        },
+        coutTimeRec: function() {
+            this.audioId = setInterval(() => {
+                if(app.recSeconds < 60) {
+                    app.recSeconds++;
+                } else {
+                    app.recSeconds = 0;
+                    app.recMinutes++;
+                }
+            }, 1000);
+        },
+        sendAudio: function() {
+            clearInterval(this.audioId);
+            var messageSent = {
+                date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
+                text: `
+                <i class="fas fa-play"></i>
+                <div class="ms_audio"></div>
+                <span>${this.recMinutes}:${this.recSeconds}</span>
+                `,
+                status: 'sent'
+            };
+            if (this.recSeconds >= 1) {
+                this.contacts[this.activeUser].messages.push(messageSent);
+                this.recMinutes = 0;
+                this.recSeconds = 0;
+                setTimeout(() => {
+                    app.replyMessage();
+                }, 1000);
+            }
+            this.isRecStarted = false;
+        },
+        deleteAudio: function() {
+            clearInterval(this.audioId);
+            this.recMinutes = 0;
+            this.recSeconds = 0;
+            this.isRecStarted = false;
         }
     }
 })
