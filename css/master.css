@@ -25,7 +25,6 @@ body {
 .ms_main_left {
     width: 35%;
     height: 100%;
-    background-color: blanchedalmond;
     border-right: 1px solid #d1d0d0;
 }
 
@@ -291,4 +290,16 @@ h4 {
     border: none;
     border-radius: 10px;
     padding: 0 10px;
+}
+
+#typing_new_message button.send_message {
+    display: none;
+}
+
+#typing_new_message input:focus {
+    outline: none;
+}
+
+#typing_new_message input:valid ~ button.send_message {
+    display: inline-block;
 }

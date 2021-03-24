@@ -119,6 +119,7 @@ var app = new Vue ({
             this.contacts[this.activeUser].messages.push(messageReply);
         },
         toggleInfo: function(index) {
+            console.log(index);
             this.messageIndex = index; /* var di appoggio per poter usare l'index in method closeInfo */
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
