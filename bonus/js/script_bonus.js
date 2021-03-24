@@ -8,6 +8,7 @@ var app = new Vue({
         newMessage: '',
         findUsers: '',
         messageIndex: '',
+        activeTab: 'left',
         myAccount: {
             name: 'Nome Utente',
             avatar: '_io'
@@ -101,6 +102,7 @@ var app = new Vue({
     methods: {
         showSelectedContactChat: function (index) {
             this.activeUser = index;
+            this.activeRightPanel();
         },
         sendMessage: function () {
             let messageSent = {
@@ -119,7 +121,7 @@ var app = new Vue({
         replyMessage: function () {
             let messageReply = {
                 date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
-                text: 'Ok',
+                text: 'ok',
                 status: 'received'
             };
             this.contacts[this.activeUser].messages.push(messageReply);
@@ -147,6 +149,12 @@ var app = new Vue({
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[this.messageIndex];
             infoMessage.style.display = 'none';
+        },
+        activeRightPanel: function() {
+            this.activeTab = 'right';
+        },
+        activeLeftPanel: function() {
+            this.activeTab = 'left';
         }
     }
 })

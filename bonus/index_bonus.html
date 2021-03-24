@@ -19,7 +19,7 @@
 <body>
     <div id="root" class="ms_main_container">
         <!-- left panel -->
-        <div class="ms_main_left">
+        <div id="ms_main_left" :class="activeTab == 'left' ? 'open' : 'close'">
             <!-- user section -->
             <section id="user">
                 <div class="user_img_name">
@@ -79,10 +79,11 @@
         </div>
         <!-- right panel -->
 
-        <div class="ms_main_right">
+        <div id="ms_main_right" :class="activeTab == 'right' ? 'open' : 'close'">
             <!-- active chat -->
             <section id="active_chat_user">
                 <div class="active_user_img_name">
+                    <i id="back" class="fas fa-arrow-left" @click="activeLeftPanel()"></i>
                     <img :src="avatarPath + contacts[activeUser].avatar + avatarImgType" alt="user image"
                         class="users_img">
                     <div class="active_user_info">
