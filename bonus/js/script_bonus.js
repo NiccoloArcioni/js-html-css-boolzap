@@ -166,8 +166,10 @@ var app = new Vue({
         },
         coutTimeRec: function() {
             this.audioId = setInterval(() => {
-                if(app.recSeconds < 60) {
+                if(app.recSeconds < 59) {
                     app.recSeconds++;
+                    if (app.recSeconds < 10)
+                        app.recSeconds = `0${app.recSeconds}`;
                 } else {
                     app.recSeconds = 0;
                     app.recMinutes++;
