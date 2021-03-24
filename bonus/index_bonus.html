@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/master.css">
+    <link rel="stylesheet" href="css/master_bonus.css">
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <!-- production version, optimized for size and speed -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
-    <title>Boolzapp</title>
+    <title>Boolzapp Bonus</title>
 </head>
 <body>
     <div id="root" class="ms_main_container">
@@ -57,17 +57,21 @@
             <section id="user_messages">
                 <nav>
                     <ul>
-                        <li v-for="(user, index) in contacts" v-if="(user.name).charAt(0).toLowerCase().includes(findUsers.toLowerCase())" @click="showSelectedContactChat(index)" :class="activeUser == index ? 'activeContact' : null">
+                        <li v-for="(user, index) in contacts"
+                            v-if="(user.name).toLowerCase().includes(findUsers.toLowerCase())"
+                            @click="showSelectedContactChat(index)"
+                            :class="activeUser == index ? 'activeContact' : null">
                             <img :src="avatarPath + user.avatar + avatarImgType" class="users_img" :alt="user.name">
                             <!-- message -->
                             <div class="message">
                                 <h4>{{user.name}}</h4>
                                 <!-- last message -->
-                                <p v-if='user.messages[user.messages.length - 1].text.length < 14'>{{user.messages[user.messages.length -1].text}}</p>
+                                <p v-if='user.messages[user.messages.length - 1].text.length < 14'>
+                                    {{user.messages[user.messages.length -1].text}}</p>
                                 <p v-else>{{user.messages[user.messages.length - 1].text.substring(0,14)}}..</p>
                                 <span>{{user.messages[user.messages.length - 1].date}}</span>
                             </div>
-                        
+
                         </li>
                     </ul>
                 </nav>
@@ -79,7 +83,8 @@
             <!-- active chat -->
             <section id="active_chat_user">
                 <div class="active_user_img_name">
-                    <img :src="avatarPath + contacts[activeUser].avatar + avatarImgType" alt="user image" class="users_img">
+                    <img :src="avatarPath + contacts[activeUser].avatar + avatarImgType" alt="user image"
+                        class="users_img">
                     <div class="active_user_info">
                         <h4>{{contacts[activeUser].name}}</h4>
                         <p>Ultimo accesso oggi alle {{activeUserLastAccess}}</p>
@@ -96,7 +101,8 @@
             <!-- active chat messages -->
             <section id="chat">
                 <div class="chat_container clearfix">
-                    <div class="message" v-for='(message, index) in contacts[activeUser].messages' :class="message.status == 'sent' ? 'position_r' : 'position_l'">
+                    <div class="message" v-for='(message, index) in contacts[activeUser].messages'
+                        :class="message.status == 'sent' ? 'position_r' : 'position_l'">
                         <div class="text_message_container">
                             <span>{{message.text}}</span>
                             <span class="message_date">{{message.date}}</span>
@@ -115,7 +121,8 @@
             <!-- typing section -->
             <section id="typing_new_message">
                 <button><i class="far fa-smile"></i></button>
-                <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()" required pattern="\S+.*"/>
+                <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
+                    required pattern="\S+.*" />
                 <button class="send_message" @click="sendMessage()"><i class="far fa-paper-plane"></i></button>
                 <button><i class="fas fa-microphone"></i></button>
             </section>
@@ -124,6 +131,6 @@
 
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script>dayjs().format()</script>
-    <script src="js/script.js"></script>
+    <script src="js/script_bonus.js"></script>
 </body>
 </html>

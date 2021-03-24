@@ -8,6 +8,10 @@ var app = new Vue ({
         newMessage: '',
         findUsers: '',
         messageIndex: '',
+        myAccount: {
+            name: 'Nome Utente',
+            avatar: '_io' 
+        },
         contacts: [
             {
                 name: 'Michele',
@@ -125,8 +129,10 @@ var app = new Vue ({
             this.messageIndex = index; /* var di appoggio per poter usare l'index in method closeInfo */
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
-            if (infoMessage.style.display === 'none')
+            console.log(infoMessage);
+            if (infoMessage.style.display == 'none') {
                 infoMessage.style.display = 'block';
+            }
             else {
                 infoMessage.style.display = 'none';
             }
