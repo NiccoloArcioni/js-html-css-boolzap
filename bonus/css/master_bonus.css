@@ -135,7 +135,7 @@ h4 {
 
 #user_messages ul {
     list-style: none;
-    height: 600px;
+    max-height: 500px;
     overflow-y: auto;
 }
 
@@ -175,6 +175,15 @@ h4 {
 
 #user_messages ul li.activeContact {
     background-color: #E9EBEB;
+}
+
+#user_messages .add_new_contact {
+    margin-top: 20px;
+    text-align: center;
+}
+#user_messages .add_new_contact button {
+    padding: 5px 10px;
+    margin-top: 10px;
 }
 
 /* RIGHT PANEL */
@@ -230,6 +239,16 @@ h4 {
     float: left;
     clear: both;
     background-color: #fff;
+}
+
+#chat .chat_container .message.new_chat {
+    width: 100%;
+    background-color: #cfcfcf75;
+}
+#chat .chat_container .message.new_chat #ms_message {
+    justify-content: center;
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 #chat .chat_container .message .text_message_container {

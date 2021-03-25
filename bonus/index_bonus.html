@@ -49,7 +49,7 @@
             <section id="user_search">
                 <div class="search_input">
                     <button><i class="fas fa-search"></i></button>
-                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="findUsers">
+                    <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="findUsers" @keyup="isInContacts()">
                 </div>
             </section>
 
@@ -71,9 +71,12 @@
                                 <p v-else>{{user.messages[user.messages.length - 1].text.substring(0,14)}}..</p>
                                 <span>{{user.messages[user.messages.length - 1].date}}</span>
                             </div>
-
                         </li>
                     </ul>
+                    <div class="add_new_contact" v-if="ulIsEmpty">
+                        <p>{{findUsers}} non è tra i tuoi contatti</p>
+                        <button id="add_contact" @click='addContact()'>Add</button>
+                    </div>
                 </nav>
             </section>
         </div>
@@ -104,7 +107,7 @@
             <section id="chat">
                 <div class="chat_container clearfix">
                     <div class="message" v-for='(message, index) in contacts[activeUser].messages'
-                        :class="message.status == 'sent' ? 'position_r' : 'position_l'">
+                        :class="message.status == 'sent' ? 'position_r' : message.status == 'received' ? 'position_l' : 'new_chat'">
                         <div class="text_message_container">
                             <div id="ms_message" v-html='message.text'></div>
                             <span class="message_date">{{message.date}}</span>

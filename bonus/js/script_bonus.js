@@ -7,6 +7,7 @@ var app = new Vue({
         avatarImgType: '.jpg',
         newMessage: '',
         findUsers: '',
+        ulIsEmpty: false,
         messageIndex: '',
         otherUserIsWriting: false,
         activeTab: 'left',
@@ -14,6 +15,7 @@ var app = new Vue({
         audioId: '',
         recSeconds: 0,
         recMinutes: 0,
+        contactsCounter: 4,
         myAccount: {
             name: 'Nome Utente',
             avatar: '_io'
@@ -206,6 +208,35 @@ var app = new Vue({
             this.recMinutes = 0;
             this.recSeconds = 0;
             this.isRecStarted = false;
+        },
+        isInContacts: function() {
+            this.contacts.forEach(contact => {
+                if (contact.name.toLowerCase().includes(this.findUsers.toLowerCase())) {
+                    this.ulIsEmpty = false;
+                } else {
+                    this.ulIsEmpty = true;
+                }
+            });
+        },
+        addContact: function() {
+            if (this.contactsCounter >= 8) {
+                this.contactsCounter = 0;
+            }
+            let newContact = {
+                name: this.findUsers,
+                avatar: '_'+(this.contactsCounter + 1),
+                visible: true,
+                messages: [
+                    {
+                        date: '',
+                        text: 'Inizia a chattare',
+                        status: 'new Chat'
+                    }
+                ],
+            };
+            this.contacts.push(newContact);
+            this.findUsers = '';
+            this.ulIsEmpty = false;
         }
     }
 })
