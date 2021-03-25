@@ -12,8 +12,10 @@ var app = new Vue({
         otherUserIsWriting: false,
         activeTab: 'left',
         isRecStarted: false,
+        isCalling: false,
+        isVideocallActive: false,
         audioId: '',
-        recSeconds: 0,
+        recSeconds: 00,
         recMinutes: 0,
         contactsCounter: 4,
         myAccount: {
@@ -245,6 +247,40 @@ var app = new Vue({
             this.contacts.push(newContact);
             this.findUsers = '';
             this.ulIsEmpty = false;
+        },
+        startVideo: function() {
+            this.isCalling = true;
+            setTimeout(function() {
+                let takeTeCall = rndNum(0,1);
+                if (takeTeCall == 0) {
+                    app.isVideocallActive = false;
+                    app.isCalling = false;
+                    let messageReply = {
+                        date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
+                        text: 'Scusa ma non posso rispondere adesso',
+                        status: 'received'
+                    };
+                    app.contacts[app.activeUser].messages.push(messageReply);
+                    app.otherUserIsWriting = false;
+                    app.scrollToEnd();
+                } else {
+                    app.isVideocallActive = true;
+                    app.coutTimeRec();
+                }
+            }, 3000)
+        },
+        closeVideo: function() {
+            clearInterval(this.audioId);
+            this.isCalling = false;
+            this.isVideocallActive = false;
+            let messageSent = {
+                date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
+                text: ` Videochiamata durata ${this.recMinutes}:${this.recSeconds}`,
+                status: 'sent'
+            };    
+            this.contacts[this.activeUser].messages.push(messageSent);
+            this.recMinutes = 0;
+            this.recSeconds = 0;
         }
     }
 })
@@ -269,4 +305,8 @@ var windowWidth = window.innerWidth;
 console.log(windowWidth);
 if ((windowWidth < 750) && (windowWidth > 465)) {
     document.getElementById('search_field').placeholder = "Cerca";
+}
+
+function rndNum(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }

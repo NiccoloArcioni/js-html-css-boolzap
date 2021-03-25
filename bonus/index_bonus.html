@@ -86,7 +86,7 @@
 
         <div id="ms_main_right" :class="activeTab == 'right' ? 'open' : 'close'">
             <!-- active chat -->
-            <section id="active_chat_user">
+            <section id="active_chat_user" :class='isVideocallActive ? "hide" : null'>
                 <div class="active_user_img_name">
                     <i id="back" class="fas fa-arrow-left" @click="activeLeftPanel()"></i>
                     <img :src="avatarPath + contacts[activeUser].avatar + avatarImgType" alt="user image"
@@ -94,11 +94,13 @@
                     <div class="active_user_info">
                         <h4>{{contacts[activeUser].name}}</h4>
                         <p>Ultimo accesso oggi alle {{activeUserLastAccess}}</p>
-                        <p class="is_writing" :class="otherUserIsWriting ? 'is_writing active' : null">Sta sctivendo..</p>
+                        <p class="is_writing"  :class="otherUserIsWriting ? 'is_writing active' : null">Typing..</p>
+                        <p class="is_calling" :class="isCalling ? 'is_calling active' : null">Calling..</p>
                     </div>
                 </div>
                 <!-- user icons -->
                 <div class="ms_active_user_icons">
+                    <i class="fas fa-video" @click='startVideo()'></i>
                     <i class="fas fa-search"></i>
                     <i class="fas fa-paperclip"></i>
                     <i class="fas fa-ellipsis-v"></i>
@@ -106,7 +108,7 @@
             </section>
 
             <!-- active chat messages -->
-            <section id="chat">
+            <section id="chat" :class='isVideocallActive ? "hide" : null'>
                 <div class="chat_container clearfix">
                     <div class="message" v-for='(message, index) in contacts[activeUser].messages'
                         :class="message.status == 'sent' ? 'position_r' : message.status == 'received' ? 'position_l' : 'new_chat'">
@@ -126,7 +128,7 @@
             </section>
 
             <!-- typing section -->
-            <section id="typing_new_message">
+            <section id="typing_new_message" :class='isVideocallActive ? "hide" : null'>
                 <button class="emoji_btn"><i class="far fa-smile"></i></button>
                 <input type="text" id="text_input" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
                     required>
@@ -139,9 +141,23 @@
                     </div>
                     <i class="far fa-trash-alt" @click="deleteAudio"></i>
                 </button>
-                
+            </section>
+
+            <section id="videocall" :class='isVideocallActive ? "active" : null'>
+                <div class="videocall_container">
+                    <div class="videocall_top">
+                        <h4>{{contacts[activeUser].name}}</h4>
+                        <span>{{recMinutes}}:{{recSeconds}}</span>
+                        <img :src="avatarPath + contacts[activeUser].avatar + avatarImgType" alt="user image" class="video_img">
+                    </div>
+
+                    <div class="videocall_bottom">
+                        <button @click='closeVideo()'><i class="fas fa-video-slash"></i></button>
+                    </div>
+                </div>
             </section>
         </div>
+
     </div>
 
     <script src="js/script_bonus.js"></script>

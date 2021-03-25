@@ -187,12 +187,21 @@ h4 {
 }
 
 /* RIGHT PANEL */
-#active_chat_user p.is_writing {
-    visibility: hidden;
+#active_chat_user i.fa-video {
+    cursor: pointer;
+}
+#active_chat_user i.fa-video:hover {
+    color: #009688;
 }
 
-#active_chat_user p.is_writing.active {
-    visibility: visible;
+#active_chat_user p.is_writing,
+#active_chat_user p.is_calling {
+    display: none;
+}
+
+#active_chat_user p.is_writing.active,
+#active_chat_user p.is_calling.active {
+    display: block;
 }
 
 #chat {
@@ -388,6 +397,66 @@ div.ms_audio {
     margin: 0 5px;
     display: inline-block;
     border-radius: 2px;
+}
+
+#typing_new_message.hide,
+#chat.hide,
+#active_chat_user.hide {
+    display: none;
+}
+
+#videocall {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    display: none;
+}
+#videocall.active {
+    display: inline-block;
+}
+
+#videocall .videocall_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#videocall .videocall_container .videocall_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+    width: 60%;
+    padding-top: 20px;
+    color: #009688;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+#videocall .videocall_container .videocall_top img {
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+#videocall .videocall_container .videocall_bottom {
+    display: flex;
+    width: 100%;
+    height: 20%;
+    justify-content: center;
+    align-items: center;
+}
+#videocall .videocall_container .videocall_bottom button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: red;
+    cursor: pointer;
+}
+#videocall .videocall_container .videocall_bottom button i {
+    color: #fff;
 }
 
 /* MEDIA QUERY */
