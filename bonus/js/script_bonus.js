@@ -219,6 +219,7 @@ var app = new Vue({
             });
         },
         addContact: function() {
+            this.contactsCounter = this.contacts.length;
             if (this.contactsCounter >= 8) {
                 this.contactsCounter = 0;
             }
