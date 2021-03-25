@@ -262,3 +262,11 @@ picker.on('emoji', function (emoji) {
 input.addEventListener('click', function () {
     picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
 })
+
+
+/* Cambio placeholder section user_search in modalità tablet*/
+var windowWidth = window.innerWidth;
+console.log(windowWidth);
+if ((windowWidth < 750) && (windowWidth > 465)) {
+    document.getElementById('search_field').placeholder = "Cerca";
+}

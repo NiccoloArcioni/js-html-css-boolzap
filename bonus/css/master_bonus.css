@@ -391,14 +391,15 @@ div.ms_audio {
 }
 
 /* MEDIA QUERY */
-@media all and (max-width: 950px) {
+@media all and (max-width: 1024px) {
     .ms_main_container {
         width: 100vw;
         height: 100vh;
     }
 }
 
-@media all and (max-width: 750px) and (min-width: 465px) {
+/* tablet */
+@media all and (max-width: 1024px) and (min-width: 640px) {
     #user .user_img_name h4 {
         font-size: 0.8em;
     }
@@ -435,7 +436,8 @@ div.ms_audio {
     }
 }
 
-@media all and (max-width: 465px) {
+/* mobile */
+@media all and (max-width: 640px) {
     #ms_main_left.open {
         display: block;
         width: 100vw;
