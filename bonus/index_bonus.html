@@ -89,6 +89,7 @@
                     <div class="active_user_info">
                         <h4>{{contacts[activeUser].name}}</h4>
                         <p>Ultimo accesso oggi alle {{activeUserLastAccess}}</p>
+                        <p class="is_writing" :class="otherUserIsWriting ? 'is_writing active' : null">Sta sctivendo..</p>
                     </div>
                 </div>
                 <!-- user icons -->

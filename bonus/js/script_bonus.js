@@ -8,6 +8,7 @@ var app = new Vue({
         newMessage: '',
         findUsers: '',
         messageIndex: '',
+        otherUserIsWriting: false,
         activeTab: 'left',
         isRecStarted: false,
         audioId: '',
@@ -109,6 +110,7 @@ var app = new Vue({
             this.activeRightPanel();
         },
         sendMessage: function () {
+            this.otherUserIsWriting = true;
             let messageSent = {
                 date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
                 text: this.newMessage,
@@ -129,6 +131,7 @@ var app = new Vue({
                 status: 'received'
             };
             this.contacts[this.activeUser].messages.push(messageReply);
+            this.otherUserIsWriting = false;
         },
         toggleInfo: function (index) {
             console.log(index);
@@ -178,6 +181,7 @@ var app = new Vue({
         },
         sendAudio: function() {
             clearInterval(this.audioId);
+            this.otherUserIsWriting = true;
             var messageSent = {
                 date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
                 text: `

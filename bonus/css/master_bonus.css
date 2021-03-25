@@ -178,6 +178,14 @@ h4 {
 }
 
 /* RIGHT PANEL */
+#active_chat_user p.is_writing {
+    visibility: hidden;
+}
+
+#active_chat_user p.is_writing.active {
+    visibility: visible;
+}
+
 #chat {
     width: 100%;
     background-image: url('../../img/mine.jpg');
