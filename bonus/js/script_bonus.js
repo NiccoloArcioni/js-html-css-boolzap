@@ -112,18 +112,19 @@ var app = new Vue({
             this.activeRightPanel();
         },
         sendMessage: function () {
-            this.otherUserIsWriting = true;
             let messageSent = {
                 date: dayjs(`${dayjs().month() + 1}/${dayjs().date()}/${dayjs().year()} ${dayjs().hour()}:${dayjs().minute()}:${dayjs().second()}`).format('DD/MM/YYYY HH:mm:ss'),
                 text: this.newMessage,
                 status: 'sent'
             };
             if (this.newMessage.length >= 1) {
+                this.otherUserIsWriting = true;
                 this.contacts[this.activeUser].messages.push(messageSent);
                 this.newMessage = '';
                 setTimeout(() => {
                     app.replyMessage();
                 }, 1000);
+                this.scrollToEnd();
             }
         },
         replyMessage: function () {
@@ -134,6 +135,7 @@ var app = new Vue({
             };
             this.contacts[this.activeUser].messages.push(messageReply);
             this.otherUserIsWriting = false;
+            this.scrollToEnd();
         },
         toggleInfo: function (index) {
             console.log(index);
@@ -200,6 +202,7 @@ var app = new Vue({
                 setTimeout(() => {
                     app.replyMessage();
                 }, 1000);
+                this.scrollToEnd();
             }
             this.isRecStarted = false;
         },
@@ -208,6 +211,10 @@ var app = new Vue({
             this.recMinutes = 0;
             this.recSeconds = 0;
             this.isRecStarted = false;
+        },
+        scrollToEnd: function () {
+            var container = this.$el.querySelector(".chat_container");
+            container.scrollTop = container.scrollHeight;
         },
         isInContacts: function() {
             this.contacts.forEach(contact => {
@@ -240,4 +247,18 @@ var app = new Vue({
             this.ulIsEmpty = false;
         }
     }
+})
+
+/* EMOJI */
+var input = document.querySelector('.emoji_btn');
+var picker = new EmojiButton({
+    position: 'top-start'
+})
+
+picker.on('emoji', function (emoji) {
+    app.newMessage += emoji;
+})
+
+input.addEventListener('click', function () {
+    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(input);
 })
