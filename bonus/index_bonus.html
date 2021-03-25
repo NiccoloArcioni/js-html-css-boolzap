@@ -121,7 +121,7 @@
 
             <!-- typing section -->
             <section id="typing_new_message">
-                <button><i class="far fa-smile"></i></button>
+                <button id="emoji-button"><i class="far fa-smile"></i></button>
                 <input type="text" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
                     required pattern="\S+.*" />
                 <button class="send_message" @click="sendMessage()"><i class="far fa-paper-plane"></i></button>

@@ -214,13 +214,13 @@ h4 {
 
 #chat .chat_container .message.position_r {
     float: right; 
-    margin-left: 60%;
+    clear: both;
     background-color: #D5F9BA;
 }
 
 #chat .chat_container .message.position_l {
     float: left;
-    margin-right: 60%;
+    clear: both;
     background-color: #fff;
 }
 
