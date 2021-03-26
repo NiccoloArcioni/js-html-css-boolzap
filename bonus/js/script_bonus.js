@@ -112,6 +112,7 @@ var app = new Vue({
         showSelectedContactChat: function (index) {
             this.activeUser = index;
             this.activeRightPanel();
+            this.scrollToEnd();
         },
         sendMessage: function () {
             let messageSent = {

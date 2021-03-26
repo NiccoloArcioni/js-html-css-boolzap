@@ -227,7 +227,7 @@ h4 {
 #chat .chat_container {
     width: 100%;
     padding: 0 10%;
-    height: 640px;
+    height: 70vh;
     margin: 0 auto;
     overflow-y: auto;
 }
