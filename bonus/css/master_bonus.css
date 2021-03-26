@@ -281,6 +281,8 @@ h4 {
 
 #chat .chat_container .single_message .text_message_container .text {
     max-width: 100%;
+    word-wrap: break-word;
+    table-layout: fixed;
 }
 
 #chat .chat_container .single_message .text_message_container .message_date {
