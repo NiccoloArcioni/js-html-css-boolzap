@@ -153,7 +153,17 @@ var app = new Vue({
         deleteMessage: function (index) {
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
-            this.contacts[this.activeUser].messages[index].status = 'deleted';
+            if (this.contacts[this.activeUser].messages.length > 1) {
+                this.contacts[this.activeUser].messages.splice(index, 1);
+            } else {
+                this.contacts[this.activeUser].messages = [
+                    {
+                        date: '',
+                        text: 'Inizia a chattare',
+                        status: 'new Chat'
+                    }
+                ]
+            }
             infoMessage.style.display = 'none';
         },
         closeInfo: function () {
