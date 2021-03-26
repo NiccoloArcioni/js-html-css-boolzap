@@ -140,11 +140,9 @@ var app = new Vue({
             this.scrollToEnd();
         },
         toggleInfo: function (index) {
-            console.log(index);
             this.messageIndex = index; /* var di appoggio per poter usare l'index in method closeInfo */
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
-            console.log(infoMessage);
             if (infoMessage.style.display == 'none') {
                 infoMessage.style.display = 'block';
             }
@@ -155,7 +153,7 @@ var app = new Vue({
         deleteMessage: function (index) {
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
-            this.contacts[this.activeUser].messages.splice(index, 1);
+            this.contacts[this.activeUser].messages[index].status = 'deleted';
             infoMessage.style.display = 'none';
         },
         closeInfo: function () {

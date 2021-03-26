@@ -190,7 +190,8 @@ h4 {
 #active_chat_user i.fa-video {
     cursor: pointer;
 }
-#active_chat_user i.fa-video:hover {
+#active_chat_user i.fa-video:hover,
+#active_chat_user #back:hover {
     color: #009688;
 }
 
@@ -220,6 +221,7 @@ h4 {
     color: #B1B1B1;
     font-size: 1.2em;
     margin-right: 10px;
+    cursor: pointer;
 }
 
 #chat .chat_container {
@@ -230,7 +232,7 @@ h4 {
     overflow-y: auto;
 }
 
-#chat .chat_container .message {
+#chat .chat_container .single_message {
     width: 250px;
     padding: 10px;
     margin-top: 10px;
@@ -238,29 +240,34 @@ h4 {
     border-radius: 10px
 }
 
-#chat .chat_container .message.position_r {
+#chat .chat_container .single_message.position_r {
     float: right; 
     clear: both;
     background-color: #D5F9BA;
 }
 
-#chat .chat_container .message.position_l {
+#chat .chat_container .single_message.position_l {
     float: left;
     clear: both;
     background-color: #fff;
 }
 
-#chat .chat_container .message.new_chat {
+#chat .chat_container .single_message.delete_message {
+    display: none;
+}
+
+#chat .chat_container .single_message.new_chat {
     width: 100%;
     background-color: #cfcfcf75;
 }
-#chat .chat_container .message.new_chat #ms_message {
+
+#chat .chat_container .single_message.new_chat #ms_message {
     justify-content: center;
     font-size: 1.2em;
     font-weight: 600;
 }
 
-#chat .chat_container .message .text_message_container {
+#chat .chat_container .single_message .text_message_container {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -272,13 +279,17 @@ h4 {
     align-items: center;
 }
 
-#chat .chat_container .message .text_message_container .message_date {
+#chat .chat_container .single_message .text_message_container .text {
+    max-width: 100%;
+}
+
+#chat .chat_container .single_message .text_message_container .message_date {
     align-self: flex-end;
     font-size: 0.6em;
     color: #808080;
 }
 
-#chat .chat_container .message .text_message_container i.fa-chevron-down {
+#chat .chat_container .single_message .text_message_container i.fa-chevron-down {
     position: absolute;
     right: 0;
     top: 0;
@@ -286,11 +297,11 @@ h4 {
     visibility: hidden;
 }
 
-#chat .chat_container .message .text_message_container:hover > i {
+#chat .chat_container .single_message .text_message_container:hover > i {
     visibility: visible;
 }
 
-#chat .chat_container .message .text_message_container .message_info {
+#chat .chat_container .single_message .text_message_container .message_info {
     position: absolute;
     right: 0;
     top: 15px;
@@ -298,15 +309,14 @@ h4 {
     box-shadow: 1px 1px 4px #808080;
     z-index: 100;
     cursor: pointer;
-    display: none;
 }
-#chat .chat_container .message .text_message_container .message_info ul {
+#chat .chat_container .single_message .text_message_container .message_info ul {
     list-style: none;
 }
-#chat .chat_container .message .text_message_container .message_info ul li {
+#chat .chat_container .single_message .text_message_container .message_info ul li {
     padding: 10px;
 }
-#chat .chat_container .message .text_message_container .message_info ul li:hover {
+#chat .chat_container .single_message .text_message_container .message_info ul li:hover {
     background-color: #E9EBEB;
 }
 
@@ -331,7 +341,8 @@ h4 {
     color: #808080;
 }
 
-#typing_new_message input {
+#typing_new_message input,
+#typing_new_message textarea {
     width: 100%;
     height: 100%;
     border: none;
@@ -343,11 +354,11 @@ h4 {
     display: none;
 }
 
-#typing_new_message input:focus {
+#typing_new_message textarea:focus {
     outline: none;
 }
 
-#typing_new_message input:valid ~ button.send_message {
+#typing_new_message textarea:valid ~ button.send_message {
     display: inline-block;
 }
 

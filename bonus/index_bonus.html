@@ -110,13 +110,13 @@
             <!-- active chat messages -->
             <section id="chat" :class='isVideocallActive ? "hide" : null'>
                 <div class="chat_container clearfix">
-                    <div class="message" v-for='(message, index) in contacts[activeUser].messages'
-                        :class="message.status == 'sent' ? 'position_r' : message.status == 'received' ? 'position_l' : 'new_chat'">
-                        <div class="text_message_container">
-                            <div id="ms_message" v-html='message.text'></div>
+                    <div class="single_message" v-for='(message, index) in contacts[activeUser].messages'
+                        :class="message.status == 'sent' ? 'position_r' : message.status == 'received' ? 'position_l' : message.status == 'deleted' ? 'delete_message' : 'new_chat'">
+                        <div class="text_message_container" v-if='contacts[activeUser].messages.length > 0'>
+                            <div class="text" v-html='message.text'></div>
                             <span class="message_date">{{message.date}}</span>
                             <i class="fas fa-chevron-down" @click="toggleInfo(index)"></i>
-                            <div class="message_info" @mouseleave='closeInfo()'>
+                            <div class="message_info" @mouseleave='closeInfo()' style="display: none;">
                                 <ul>
                                     <li>Message info</li>
                                     <li @click="deleteMessage(index)">Delete Message</li>
@@ -130,8 +130,8 @@
             <!-- typing section -->
             <section id="typing_new_message" :class='isVideocallActive ? "hide" : null'>
                 <button class="emoji_btn"><i class="far fa-smile"></i></button>
-                <input type="text" id="text_input" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
-                    required>
+                <textarea id="text_input" placeholder="Scrivi un messaggio" v-model="newMessage" @keyup.enter="sendMessage()"
+                    required cols="180" rows="10"></textarea>
                 <button class="send_message" @click="sendMessage()"><i class="far fa-paper-plane"></i></button>
                 <button id="mic" :class="isRecStarted ? 'active' : null">
                     <div class="recording">
