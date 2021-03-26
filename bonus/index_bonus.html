@@ -57,33 +57,77 @@
 
             <!-- messages -->
             <section id="user_messages">
+                <div class='chat_options'>    
+                    <span @click='showArchiveChat = false' :class='showArchiveChat ? null : "active"'>Active Chats</span>
+                    <span @click='showArchiveChat = true' :class='showArchiveChat ? "active" : null'>Archived Chats</span>
+                </div>
                 <nav>
-                    <ul>
-                        <li v-for="(user, index) in contacts"
-                            v-if="(user.name).toLowerCase().includes(findUsers.toLowerCase())"
-                            @click="showSelectedContactChat(index)"
-                            :class="activeUser == index ? 'activeContact' : null">
-                            <img :src="avatarPath + user.avatar + avatarImgType" class="users_img" :alt="user.name">
-                            <!-- message -->
-                            <div class="message">
-                                <h4>{{user.name}}</h4>
-                                <!-- last message -->
-                                <p v-if='user.messages[user.messages.length - 1].text.length < 14'>
-                                    {{user.messages[user.messages.length -1].text}}</p>
-                                <p v-else>{{user.messages[user.messages.length - 1].text.substring(0,14)}}..</p>
-                                <span>{{user.messages[user.messages.length - 1].date}}</span>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="add_new_contact" v-if="ulIsEmpty">
-                        <p>{{findUsers}} non è tra i tuoi contatti</p>
-                        <button id="add_contact" @click='addContact()'>Add</button>
+                    <div class="active_contacts" v-if="!showArchiveChat">
+                        <ul>
+                            <li v-for="(user, index) in contacts"
+                                v-if="((user.name).toLowerCase().includes(findUsers.toLowerCase()) && user.visible)"
+                                :class="activeUser == index ? 'activeContact' : null">
+                                <div class="ms_container">
+                                    <div class="img_text_container" @click="showSelectedContactChat(index)">
+                                        <img :src="avatarPath + user.avatar + avatarImgType" class="users_img" :alt="user.name">
+                                        <!-- message -->
+                                        <div class="message">
+                                            <h4>{{user.name}}</h4>
+                                            <!-- last message -->
+                                            <p v-if='user.messages[user.messages.length - 1].text.length < 14'>
+                                                {{user.messages[user.messages.length -1].text}}</p>
+                                            <p v-else>{{user.messages[user.messages.length - 1].text.substring(0,14)}}..</p>
+                                            <span>{{user.messages[user.messages.length - 1].date}}</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down" @click='toggleArchiveOption(index)'></i>
+                                    <div class="archive_chat_option" style="display: none;" @mouseleave="toggleArchiveOption(index)"> 
+                                        <ul>
+                                            <li @click='archiveChat(index)'>Archive Chat</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="add_new_contact" v-if="ulIsEmpty">
+                            <p>{{findUsers}} non è tra i tuoi contatti</p>
+                            <button id="add_contact" @click='addContact()'>Add</button>
+                        </div>
                     </div>
+
+                    <div class="archived_contacts" v-if="showArchiveChat">
+                        <ul>
+                            <li v-for="(user, index) in contacts" v-if="((user.name).toLowerCase().includes(findUsers.toLowerCase()) && !user.visible)"
+                                :class="activeUser == index ? 'activeContact' : null">
+                                <div class="ms_container">
+                                    <div class="img_text_container" @click="showSelectedContactChat(index)">
+                                        <img :src="avatarPath + user.avatar + avatarImgType" class="users_img" :alt="user.name">
+                                        <!-- message -->
+                                        <div class="message">
+                                            <h4>{{user.name}}</h4>
+                                            <!-- last message -->
+                                            <p v-if='user.messages[user.messages.length - 1].text.length < 14'>
+                                                {{user.messages[user.messages.length -1].text}}</p>
+                                            <p v-else>{{user.messages[user.messages.length - 1].text.substring(0,14)}}..</p>
+                                            <span>{{user.messages[user.messages.length - 1].date}}</span>
+                                        </div>
+                                    </div>
+                                    <i class="fas fa-chevron-down" @click='toggleArchiveOption(index)'></i>
+                                    <div class="archive_chat_option" style="display: none;" @mouseleave="toggleArchiveOption(index)">
+                                        <ul>
+                                            <li @click="activeChat(index)">Active Chat</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
                 </nav>
             </section>
         </div>
-        <!-- right panel -->
 
+        <!-- right panel -->
         <div id="ms_main_right" :class="activeTab == 'right' ? 'open' : 'close'">
             <!-- active chat -->
             <section id="active_chat_user" :class='isVideocallActive ? "hide" : null'>
@@ -116,7 +160,7 @@
                             <div class="text" v-html='message.text'></div>
                             <span class="message_date">{{message.date}}</span>
                             <i class="fas fa-chevron-down" @click="toggleInfo(index)"></i>
-                            <div class="message_info" @mouseleave='closeInfo()' style="display: none;">
+                            <div class="message_info" @mouseleave='toggleInfo(index)' style="display: none;">
                                 <ul>
                                     <li>Message info</li>
                                     <li @click="deleteMessage(index)">Delete Message</li>

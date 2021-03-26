@@ -133,6 +133,19 @@ h4 {
     overflow-y: scroll;
 }
 
+#user_messages .chat_options {
+    display: flex;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 10px auto;
+    font-size: 0.8em;
+    cursor: pointer;
+}
+#user_messages .chat_options span.active {
+    font-size: 1.2em;
+    color: #009688;
+}
+
 #user_messages ul {
     list-style: none;
     max-height: 500px;
@@ -140,7 +153,8 @@ h4 {
 }
 
 #user_messages ul li {
-    display: flex;
+    /* display: flex; */
+    position: relative;
     border-bottom: 1px solid #E9EBEB;
     padding: 5px 15px;
     cursor: pointer;
@@ -148,25 +162,51 @@ h4 {
 #user_messages ul li:hover {
     background-color: #f3f3f3;
 }
+#user_messages ul li .ms_container {
+    display: flex;
+}
+#user_messages ul li .ms_container .img_text_container {
+    display: flex;
+    width: 95%;
+    height: 100%;
+}
 
-#user_messages ul li .message {
+#user_messages ul li .ms_container .message {
     position: relative;
     width: 100%;
     height: 50px;
     margin-left: 15px;
 }
-#user_messages ul li .message p {
+#user_messages ul li .ms_container .message p {
     position: absolute;
     bottom: 0;
     left: 0;
     font-size: 0.8em;
 }
-#user_messages ul li .message span {
+#user_messages ul li .ms_container .message span {
     position: absolute;
     bottom: 0;
     right: 0;
     color: #b9b9b9;
     font-size: 0.6em;
+}
+#user_messages ul li .ms_container i.fa-chevron-down {
+    position: relative;
+    color: #808080;
+    visibility: hidden;
+}
+#user_messages ul li .ms_container .archive_chat_option {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    display: none;
+}
+#user_messages ul li .ms_container .archive_chat_option li {
+    font-size: 0.8em;
+}
+
+#user_messages ul li:hover i.fa-chevron-down {
+    visibility: visible;
 }
 
 #user_messages ul li:first-child {
