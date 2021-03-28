@@ -201,6 +201,10 @@ h4 {
     top: 15px;
     display: none;
 }
+#user_messages ul li .ms_container .archive_chat_option.active {
+    display: block;
+}
+
 #user_messages ul li .ms_container .archive_chat_option li {
     font-size: 0.8em;
 }

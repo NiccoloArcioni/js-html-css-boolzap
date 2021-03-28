@@ -1,6 +1,3 @@
-const chat = document.getElementsByClassName('archive_chat_option');
-
-
 var app = new Vue({
     el: '#root',
     data: {
@@ -164,7 +161,7 @@ var app = new Vue({
                 this.contacts[this.activeUser].messages = [
                     {
                         date: '',
-                        text: 'Inizia a chattare',
+                        text: 'Start Chatting',
                         status: 'new Chat'
                     }
                 ]
@@ -291,13 +288,8 @@ var app = new Vue({
             this.recSeconds = 0;
         },
         toggleArchiveOption: function(index) {
-            if (chat[index].style.display == 'none') {
-                this.showArchiveChatOption = true;
-                chat[index].style.display = 'inline-block';
-            } else {
-                this.showArchiveChatOption = false;
-                chat[index].style.display = 'none';
-            }
+            var archiveList = document.getElementById(`${index}`);
+            archiveList.classList.toggle("active");
         },
         archiveChat: function(index) {
             this.contacts[index].visible = false;

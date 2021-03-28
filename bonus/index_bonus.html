@@ -81,7 +81,7 @@
                                         </div>
                                     </div>
                                     <i class="fas fa-chevron-down" @click='toggleArchiveOption(index)'></i>
-                                    <div class="archive_chat_option" style="display: none;" @mouseleave="toggleArchiveOption(index)"> 
+                                    <div class="archive_chat_option" :id="index"> 
                                         <ul>
                                             <li @click='archiveChat(index)'>Archive Chat</li>
                                         </ul>
@@ -112,8 +112,8 @@
                                             <span>{{user.messages[user.messages.length - 1].date}}</span>
                                         </div>
                                     </div>
-                                    <i class="fas fa-chevron-down" @click='toggleArchiveOption(index)'></i>
-                                    <div class="archive_chat_option" style="display: none;" @mouseleave="toggleArchiveOption(index)">
+                                    <i class="fas fa-chevron-down" @click='toggleArchiveOption((index + contacts.length))'></i>
+                                    <div class="archive_chat_option" :id="(index + contacts.length)">
                                         <ul>
                                             <li @click="activeChat(index)">Active Chat</li>
                                         </ul>
