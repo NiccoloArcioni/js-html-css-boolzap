@@ -222,7 +222,8 @@ h4 {
 }
 
 #user_messages .add_new_contact {
-    margin-top: 20px;
+    margin: 20px auto 0 auto;
+    width: 60%;
     text-align: center;
 }
 #user_messages .add_new_contact button {

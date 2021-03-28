@@ -90,7 +90,8 @@
                             </li>
                         </ul>
                         <div class="add_new_contact" v-if="ulIsEmpty">
-                            <p>{{findUsers}} non è tra i tuoi contatti</p>
+                            <p>{{findUsers}} non è tra i tuoi contatti attivi</p>
+                            <p>Prima di aggiungere controlla tra le chat archiviate</p>
                             <button id="add_contact" @click='addContact()'>Add</button>
                         </div>
                     </div>
