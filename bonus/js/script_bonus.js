@@ -14,6 +14,8 @@ var app = new Vue({
         isRecStarted: false,
         isCalling: false,
         isVideocallActive: false,
+        showArchiveChat: false,
+        showArchiveChatOption: false,
         audioId: '',
         recSeconds: 00,
         recMinutes: 0,
@@ -141,7 +143,6 @@ var app = new Vue({
             this.scrollToEnd();
         },
         toggleInfo: function (index) {
-            this.messageIndex = index; /* var di appoggio per poter usare l'index in method closeInfo */
             let infos = document.getElementsByClassName('message_info');
             let infoMessage = infos[index];
             if (infoMessage.style.display == 'none') {
@@ -160,16 +161,11 @@ var app = new Vue({
                 this.contacts[this.activeUser].messages = [
                     {
                         date: '',
-                        text: 'Inizia a chattare',
+                        text: 'Start Chatting',
                         status: 'new Chat'
                     }
                 ]
             }
-            infoMessage.style.display = 'none';
-        },
-        closeInfo: function () {
-            let infos = document.getElementsByClassName('message_info');
-            let infoMessage = infos[this.messageIndex];
             infoMessage.style.display = 'none';
         },
         activeRightPanel: function() {
@@ -290,6 +286,16 @@ var app = new Vue({
             this.contacts[this.activeUser].messages.push(messageSent);
             this.recMinutes = 0;
             this.recSeconds = 0;
+        },
+        toggleArchiveOption: function(index) {
+            var archiveList = document.getElementById(`${index}`);
+            archiveList.classList.toggle("active");
+        },
+        archiveChat: function(index) {
+            this.contacts[index].visible = false;
+        },
+        activeChat: function (index) {
+            this.contacts[index].visible = true;
         }
     }
 })
@@ -319,3 +325,4 @@ if ((windowWidth < 750) && (windowWidth > 465)) {
 function rndNum(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
